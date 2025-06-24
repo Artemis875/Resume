@@ -1,12 +1,3 @@
-%----------------------------------%
-% I use a famous animation character "Satoru Gojo" as a sample data. 
-% The project does not include any personal and identificable data.
-%----------------------------------%
-
-%----------------------------------%
-% Required packages
-%----------------------------------%
-%\NeedsTexFormat{LaTeX2e}
 \ProvidesPackage{smoothThemeCV}
 \LoadClass[a4paper,12pt]{article}
 \RequirePackage{enumitem}
