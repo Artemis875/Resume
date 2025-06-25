@@ -1,0 +1,21 @@
+name: Build PDF
+
+on: [push]
+
+jobs:
+    build:
+        runs-on: debian:10.3
+
+        steps:
+        - uses: actions/checkout@v2
+
+        - name: Build with Docker
+          run: |
+            docker build -t tex-builder .
+            docker run --rm -v "$PWD:/workspace" tex-builder
+
+        - name: Upload PDF artifact
+          uses: actions/upload-artifact@v2
+          with:
+            name: cv.pdf
+            path: cv.pdf
