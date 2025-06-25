@@ -12,9 +12,11 @@ jobs:
         - name: Build with Docker
           run: |
             docker build -t tex-builder .
-            docker run --rm -v "$PWD:/workspace" tex-builder
+            docker run --rm --user=$(id -u):$(id -g) -v "$PWD:/workspace" tex-builder \
+              sh -c "pdflatex -interaction=nonstopmode -halt-on-error CV\cv.tex || (cat main.log && exit 1)"
 
         - name: Upload PDF artifact
+          if: success()
           uses: actions/upload-artifact@v2
           with:
             name: cv.pdf
